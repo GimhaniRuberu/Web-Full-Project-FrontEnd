@@ -1,0 +1,85 @@
+<div class="container-fluid"></div>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Id</th>
+      <th scope="col">ISBN</th>
+      <th scope="col">Title</th>
+      <th scope="col">Author</th>
+      <th scope="col">Category</th>
+      <th scope="col">Qty</th>
+      <th scope="col">Option</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let book of bookList">
+      <td>{{book.id}}</td>
+      <td>{{book.isbn}}</td>
+      <td>{{book.title}}</td>
+      <td>{{book.author}}</td>
+      <td>{{book.category}}</td>
+      <td>{{book.qty}}</td>
+      <td><button type="button" (click)="setSelectedBook(book)" data-bs-toggle="modal" data-bs-target="#exampleModal2"
+          class="btn btn-success"><i class="bi bi-pencil-square"></i></button>
+        <button type="button" (click)="setSelectedBook(book)" data-bs-toggle="modal" data-bs-target="#staticBackdrop"
+          class="btn btn-danger ms-3"><i class="bi bi-trash3"></i></button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+Modal
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+  aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="staticBackdropLabel">Deleted</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Are you sure about that?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal" (click)="deleteBook()">Deleted</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Update Here</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <label for="recipient-name" class="col-form-label">Id:</label>
+        <input type="text" value={{selectedBook?.id}} disabled class="form-control" id="recipient-name">
+        <label for="recipient-name" class="col-form-label">Isbn:</label>
+        <input type="text" value={{selectedBook?.isbn}} disabled class="form-control" id="recipient-name">
+        <label for="recipient-name" class="col-form-label">Title:</label>
+        <input type="text" [(ngModel)]="selectedBook && selectedBook.title" [ngModelOptions]="{standalone:true}"
+          class="form-control" id="recipient-name">
+        <label for="recipient-name" class="col-form-label">Author:</label>
+        <input type="text" [(ngModel)]="selectedBook && selectedBook.author" [ngModelOptions]="{standalone:true}"
+          class="form-control" id="recipient-name">
+        <label for="recipient-name" class="col-form-label">Categoty:</label>
+        <input type="text" [(ngModel)]="selectedBook && selectedBook.category" [ngModelOptions]="{standalone:true}"
+          class="form-control" id="recipient-name">
+        <label for="recipient-name" class="col-form-label">Qty:</label>
+        <input type="text" [(ngModel)]="selectedBook && selectedBook.qty" [ngModelOptions]="{standalone:true}"
+          class="form-control" id="recipient-name">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Discard</button>
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="updateBook()">Updated</button>
+      </div>
+    </div>
+  </div>
+</div>
+<button routerLink="/ggg">Submit</button>
+<a></a>
